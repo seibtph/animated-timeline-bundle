@@ -1,0 +1,42 @@
+<div class="<?= $this->class ?> block"<?= $this->cssID ?><?php if ($this->style): ?> style="<?= $this->style ?>"<?php endif; ?>>
+
+<div id="my-timeline"></div>
+
+<?php $GLOBALS['TL_JAVASCRIPT'][] = '/bundles/pdirtimelineslider/js/jquery.roadmap.min.js'; ?>
+<?php $GLOBALS['TL_JAVASCRIPT'][] = '/bundles/pdirtimelineslider/js/timeline-slider.js'; ?>
+<?php $GLOBALS['TL_CSS'][] = '/bundles/pdirtimelineslider/css/jquery.roadmap.min.css'; ?>
+<?php $GLOBALS['TL_CSS'][] = '/bundles/pdirtimelineslider/css/timeline-slider.scss|static'; ?>
+
+<?php
+$GLOBALS['TL_BODY'][] = "
+<script>
+jQuery(document).ready(function($) {
+
+    var events = [];
+
+    $('.ce_timelineSliderElement').each( function() {
+        var headline = $(this).find('h2:first-child').text();
+        var content = '';
+        if($(this).find('h2:not(:first-child)').text() != '') content += $(this).find('h2:not(:first-child)').wrap('<h2/>').parent().html();
+        if($(this).find('h3:not(:first-child)').text() != '') content += $(this).find('h3:not(:first-child)').wrap('<h3/>').parent().html();
+        if($(this).find('h4:not(:first-child)').text() != '') content += $(this).find('h4:not(:first-child)').wrap('<h4/>').parent().html();
+        if($(this).find('h5:not(:first-child)').text() != '') content += $(this).find('h5:not(:first-child)').wrap('<h5/>').parent().html();
+        if($(this).find('h6:not(:first-child)').text() != '') content += $(this).find('h6:not(:first-child)').wrap('<h6/>').parent().html();
+        content += $(this).find('p').text();
+        var element = {};
+        element.date = headline;
+        element.content = content;
+        events.push(element);
+    });
+
+    $('#my-timeline').roadmap(events, {
+        eventsPerSlide: ".$this->eventsPerSlide.",
+        slide: 1,
+        prevArrow: '<',
+        nextArrow: '>',
+        orientation: '".$this->orientation."'
+    });
+
+});
+</script>
+"; ?>

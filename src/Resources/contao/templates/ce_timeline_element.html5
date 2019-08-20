@@ -1,0 +1,13 @@
+<div class="<?= $this->class ?> block"<?= $this->cssID ?> style="display:none;<?php if ($this->style): ?><?= $this->style ?><?php endif; ?>">
+    <?php $this->block('content'); ?>
+
+    <?php if ($this->headline): ?>
+        <<?= $this->hl ?>>
+                <?= $this->headline ?>
+        </<?= $this->hl ?>>
+    <?php endif; ?>
+
+    <?= $this->text ?>
+
+    <?php $this->endblock(); ?>
+</div>
