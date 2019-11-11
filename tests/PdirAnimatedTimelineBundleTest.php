@@ -14,8 +14,17 @@
  * file that was distributed with this source code.
  */
 
-$GLOBALS['TL_LANG']['CTE']['pdirTimelineSlider'] = 'Animated Timeline';
+namespace Pdir\AnimatedTimelineBundle\Tests;
 
-$GLOBALS['TL_LANG']['CTE']['timelineSliderElement'][0] = 'Timeline Element';
-$GLOBALS['TL_LANG']['CTE']['timelineSliderStart'][0] = 'Umschlag (Anfang)';
-$GLOBALS['TL_LANG']['CTE']['timelineSliderStop'][0] = 'Umschlag (Stop)';
+use Pdir\AnimatedTimelineBundle\PdirAnimatedTimelineBundle;
+use PHPUnit\Framework\TestCase;
+
+class PdirAnimatedTimelineBundleTest extends TestCase
+{
+    public function testCanBeInstantiated()
+    {
+        $bundle = new PdirAnimatedTimelineBundle();
+
+        $this->assertInstanceOf('Pdir\AnimatedTimelineBundle\PdirAnimatedTimelineBundle', $bundle);
+    }
+}
